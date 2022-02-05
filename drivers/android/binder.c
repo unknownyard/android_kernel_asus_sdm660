@@ -3300,7 +3300,7 @@ static void binder_transaction(struct binder_proc *proc,
 						    offp - off_start);
 			if (!parent) {
 				binder_user_error("%d:%d got transaction with invalid parent offset or type\n",
-						  proc->cred, thread->cred);
+						  proc->cred, thread->pid);
 				return_error = BR_FAILED_REPLY;
 				return_error_param = -EINVAL;
 				return_error_line = __LINE__;
@@ -3346,7 +3346,7 @@ static void binder_transaction(struct binder_proc *proc,
 					   (const void __user *)(uintptr_t)
 					   bp->buffer, bp->length)) {
 				binder_user_error("%d:%d got transaction with invalid offsets ptr\n",
-						  proc->cred, thread->cred);
+						  proc->cred, thread->pid);
 				return_error_param = -EFAULT;
 				return_error = BR_FAILED_REPLY;
 				return_error_line = __LINE__;
